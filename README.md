@@ -74,7 +74,7 @@ Clone o repositório para sua máquina local:
 
 Bash
 
-git clone https://github.com/seu-usuario/kanban-console.git
+git clone [https://github.com/josewilson/Kanban_Console_Backend](https://github.com/josewilson/Kanban_Console_Backend)
 Navegue até o diretório raiz do projeto:
 
 Bash
