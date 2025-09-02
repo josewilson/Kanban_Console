@@ -1,87 +1,164 @@
-# 🗂️ Kanban Console Backend
+# 📌 Kanban Console Backend
 
-Aplicação **Kanban de linha de comando (CLI)** robusta para gerenciamento de quadros e cartões, construída em **Java 17** com **Spring Boot**.  
-O projeto demonstra domínio em **arquitetura em camadas**, **persistência com Spring Data JPA**, **migração de banco de dados com Liquibase** e **interface interativa no terminal**.
+[![Java](https://img.shields.io/badge/Java-17-blue?logo=java)](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html)
+[![Spring Boot](https://img.shields.io/badge/Spring_Boot-3.2-green?logo=springboot)](https://spring.io/projects/spring-boot)
+[![H2 Database](https://img.shields.io/badge/H2-Database-blue?logo=h2database)](http://www.h2database.com/html/main.html)
+[![Gradle](https://img.shields.io/badge/Gradle-7.6-blue?logo=gradle)](https://gradle.org/)
+[![MIT License](https://img.shields.io/badge/License-MIT-yellow)](LICENSE)
 
----
-
-## 📋 Índice
-- [💻 Sobre o Projeto](#-sobre-o-projeto)
-- [✨ Funcionalidades](#-funcionalidades)
-- [🛠 Tecnologias Utilizadas](#-tecnologias-utilizadas)
-- [🏛 Arquitetura](#-arquitetura)
-- [🚀 Como Executar](#-como-executar)
-  - [Pré-requisitos](#pré-requisitos)
-  - [Passos de Instalação](#-passos-de-instalação)
-- [📈 Melhorias Futuras](#-melhorias-futuras)
-- [👨‍💻 Autor](#-autor)
-- [📄 Licença](#-licença)
+Uma aplicação **CLI (Command Line Interface)** para gerenciamento de quadros Kanban, construída com **Java 17** e **Spring Boot**.  
+Demonstra **arquitetura em camadas**, integração com banco de dados **H2** versionado via **Liquibase**, e uma interface interativa no terminal.
 
 ---
 
-## 💻 Sobre o Projeto
-Este projeto implementa um **quadro Kanban funcional no console**, com suporte para múltiplos quadros (ex: *A Fazer*, *Em Andamento*, *Concluído*) e movimentação de cartões entre eles.  
+## 📋 Sobre o Projeto
 
-Diferenciais:
-- Arquitetura em camadas para melhor manutenibilidade.  
-- Persistência em memória com **H2 Database**.  
-- Migração de banco de dados versionada com **Liquibase**.  
-- Menu interativo amigável no terminal.  
+Este projeto simula um **quadro Kanban** diretamente no terminal, com funcionalidades como:
+
+- Criação de quadros: `A Fazer`, `Em Andamento`, `Concluído`.  
+- Criação e movimentação de cartões entre quadros.  
+- Persistência de dados em memória (H2) com versionamento via Liquibase.
+
+O objetivo é demonstrar **boas práticas de back-end**, incluindo:
+
+- Arquitetura organizada: UI, Service, Repository, Model, DTO  
+- Persistência com **Spring Data JPA + H2**  
+- Versionamento de banco com **Liquibase**  
+- Build automatizado com **Gradle**
 
 ---
 
 ## ✨ Funcionalidades
-- 📊 **Visualizar quadros e cartões** diretamente no terminal.  
-- 📝 **Criar novos cartões** em qualquer quadro.  
-- 🔄 **Mover cartões** entre colunas (*To Do*, *Doing*, *Done*).  
-- 🖥 **Interface interativa** baseada em menu no console.  
-- 💾 **Persistência temporária** em H2 (dados armazenados durante a execução).  
+
+- 📋 Visualização completa de **quadros e cartões**  
+- ➕ Criação de **cards** em qualquer quadro  
+- 🔄 Movimentação de **cards** entre quadros  
+- 🖥️ Interface interativa via menu no console  
+- 💾 Persistência em memória (H2) com versionamento via Liquibase
 
 ---
 
-## 🛠 Tecnologias Utilizadas
-- ☕ **Java 17**  
-- 🚀 **Spring Boot**  
-- 🗄 **Spring Data JPA**  
-- 🐘 **H2 Database (in-memory)**  
-- 🔧 **Liquibase**  
-- ⚙️ **Gradle**  
-- 📝 **Lombok**  
+## 🛠️ Tecnologias
+
+- ☕ Java 17  
+- 🚀 Spring Boot 3.2  
+- 🗄️ Spring Data JPA  
+- 🛢️ H2 Database  
+- 🔄 Liquibase  
+- 📦 Gradle 7.6  
+- 🧰 Lombok  
 
 ---
 
-## 🏛 Arquitetura
-A aplicação segue **arquitetura em camadas**, garantindo desacoplamento e boas práticas:  
+## 🏛️ Arquitetura em Camadas
 
-- **UI (CommandLineRunner)** → interação com o usuário via console.  
-- **Service Layer** → regras de negócio (CommandService e QueryService).  
-- **Repository** → abstração da persistência com Spring Data JPA.  
-- **Model/Entity** → mapeamento das entidades com JPA.  
-- **DTOs** → transferência de dados entre camadas.  
+- **UI (Interface do Usuário)**
+  - Interação via console (**CommandLineRunner**)
+
+- **Service**
+  - Regras de negócio
+  - **QueryService** → consultas
+  - **CommandService** → ações
+
+- **Repository**
+  - Abstração de dados com Spring Data JPA
+
+- **Model**
+  - Entidades persistidas no banco
+
+- **DTO**
+  - Transferência segura de dados entre camadas
+
+
 
 ---
 
 ## 🚀 Como Executar
 
 ### Pré-requisitos
-- **Java 17+**  
-- **Git**  
-- **Gradle**  
 
-### Passos de Instalação
+- JDK 17+ → [Download](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html)  
+- Git → [Instalação](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
+
+### Clonar e Compilar
+
 ```bash
-# Clone o repositório
 git clone https://github.com/josewilson/Kanban_Console_Backend.git
-
-# Acesse o diretório
 cd Kanban_Console_Backend
+./gradlew build
+```
 
-# Compile e rode
-./gradlew bootRun 
+### Executar
+```bash
+./gradlew bootRun
+```
 
 
+### 📌 Nota (Windows): antes de rodar, execute:
+```bash
+chcp 65001 
+```
 
-###📌 No Windows, execute antes:
-chcp 65001
-para garantir a exibição correta de acentuação.
 
+## 🎮 Como Utilizar
+
+Digite 1 → Lista todos os quadros e cartões
+
+Digite 2 → Cria um novo cartão
+
+Digite 3 → Move cartões entre quadros
+
+## 🖼️ Demonstração da Interface
+
+## 📊 Exemplo de Dados (Tabela)
+
+#### Boards
+
+| ID | Nome         |
+| -- | ------------ |
+| 1  | A Fazer      |
+| 2  | Em Andamento |
+| 3  | Concluído    |
+
+##### Cards
+
+| ID | Título          | Board        | Descrição          |
+| -- | --------------- | ------------ | ------------------ |
+| 1  | Criar README    | A Fazer      | Escrever README.md |
+| 2  | Implementar CLI | Em Andamento | Menu interativo    |
+| 3  | Testar App      | Concluído    | Testes unitários   |
+
+## 📊 Visualizar Dados no Banco (H2 Console)
+
+### Ative no application.properties:
+```bash
+spring.h2.console.enabled=true
+```
+### Rode a aplicação:
+```bash
+./gradlew bootRun
+```
+### Acesse no navegador:
+
+👉 http://localhost:8080/h2-console
+
+### JDBC URL:
+```bash
+jdbc:h2:mem:kanbandb
+```
+### Exemplo de consultas SQL:
+```bash
+SELECT * FROM BOARD;
+SELECT * FROM CARD;
+```
+
+## 👨‍💻 Autor
+
+José Wilson – Desenvolvedor Backend Júnior
+
+-📌 [LinkedIn](https://www.linkedin.com/in/jose-wilson-alves-de-souza/)
+-📌 [GitHub](https://github.com/josewilson)
+
+## 📄 Licença
+
+Este projeto está sob a licença MIT e pode ser usado para estudos e práticas.
